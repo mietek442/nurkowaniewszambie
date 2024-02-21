@@ -152,7 +152,8 @@ function Dashbordrduser() {
         color: changedserver?.color,
         // fontWeight: "bold",
         marginBottom: "0px",
-      }}>
+      }}
+    >
       {changedserver?.text}
     </InputLabel>
   );
@@ -223,7 +224,7 @@ function Dashbordrduser() {
             />
           </div>
           <InputLabel className="Labels" style={stylelabel}>
-            Imie Nazwisko: {returnedData?.id}
+            Imie Nazwisko:
           </InputLabel>
           <div className="black">
             <Input
@@ -299,7 +300,8 @@ function Dashbordrduser() {
                     transition: "0.5s",
                     color: "#02081d",
                   },
-                }}>
+                }}
+              >
                 Resetuj hasło
               </Button>
             </Link>
@@ -329,7 +331,8 @@ function Dashbordrduser() {
                   transition: "0.5s",
                   color: "#02081d",
                 },
-              }}>
+              }}
+            >
               zmień dane
             </Button>
             <Button
@@ -356,13 +359,13 @@ function Dashbordrduser() {
                   transition: "0.5s",
                   color: "#02081d",
                 },
-              }}>
+              }}
+            >
               Wyloguj
             </Button>
           </div>
         </form>
       </div>
-      0990--000
     </div>
   );
 }
