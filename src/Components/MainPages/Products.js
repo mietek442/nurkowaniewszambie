@@ -40,9 +40,9 @@ function Products() {
             </div>
             <div className="product-text">
               <div className="description-product">
-                <div className="desc-main-product">konto takie oooo</div>
+                <div className="desc-main-product">skafander</div>
                 <div className="desc-desc-product">
-                  konto takie i owakie polacam magda gesler
+                  tani skafander do nurkowania
                 </div>
                 <div className="avaiable">nie dostępny</div>
               </div>
