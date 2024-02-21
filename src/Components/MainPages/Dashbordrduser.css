@@ -1,0 +1,9 @@
+.dash-user {
+  height: 50vh;
+  height: auto;
+  min-height: 90vh;
+  left: 0;
+  padding: 10px 5vw;
+  right: 0;
+  background-color: rgb(168, 168, 168);
+}
