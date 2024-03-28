@@ -21,7 +21,7 @@ function Dashbordrduser() {
   const obj = {};
   Axios.defaults.withCredentials = true;
   useEffect(() => {
-    Axios.get("http://localhost:3002/returndata", { withCredentials: true })
+    Axios.get(`${process.env.REACT_APP_URL_API}/returndata`)
       .then((res) => {
         setreturnedData(res.data);
       })
@@ -121,7 +121,7 @@ function Dashbordrduser() {
     };
 
     Axios.defaults.withCredentials = true;
-    Axios.post("http://localhost:3002/changeSValue", obj, {
+    Axios.post(`${process.env.REACT_APP_URL_API}/changeSValue`, obj, {
       withCredentials: true,
     })
       .then((res) => {
@@ -152,8 +152,7 @@ function Dashbordrduser() {
         color: changedserver?.color,
         // fontWeight: "bold",
         marginBottom: "0px",
-      }}
-    >
+      }}>
       {changedserver?.text}
     </InputLabel>
   );
@@ -167,11 +166,12 @@ function Dashbordrduser() {
     };
 
     Axios.defaults.withCredentials = true;
-    Axios.post("http://localhost:3002/generateresetpass", obj, {
+    Axios.post(`${process.env.REACT_APP_URL_API}/generateresetpass`, obj, {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res?.data);
+    
+
         if (res?.data) {
           navigate(res?.data);
         }
@@ -184,7 +184,7 @@ function Dashbordrduser() {
     const obj = {};
 
     Axios.defaults.withCredentials = true;
-    Axios.post("http://localhost:3002/logout", obj, {
+    Axios.post(`${process.env.REACT_APP_URL_API}/logout`, obj, {
       withCredentials: true,
     })
       .then((res) => {
@@ -200,7 +200,7 @@ function Dashbordrduser() {
         updateToken();
         setreturnedData(res?.data);
 
-        console.log("mess", res?.data);
+    
       })
       .catch(function (error) {
         console.log("Error ", error);
@@ -300,8 +300,7 @@ function Dashbordrduser() {
                     transition: "0.5s",
                     color: "#02081d",
                   },
-                }}
-              >
+                }}>
                 Resetuj hasło
               </Button>
             </Link>
@@ -331,8 +330,7 @@ function Dashbordrduser() {
                   transition: "0.5s",
                   color: "#02081d",
                 },
-              }}
-            >
+              }}>
               zmień dane
             </Button>
             <Button
@@ -359,8 +357,7 @@ function Dashbordrduser() {
                   transition: "0.5s",
                   color: "#02081d",
                 },
-              }}
-            >
+              }}>
               Wyloguj
             </Button>
           </div>

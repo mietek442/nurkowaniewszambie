@@ -221,7 +221,7 @@ function ChangePass(RegisterText) {
 
     const secret = `doyo${ppppone}nothisisashit${zmp}6194684`;
     const encrypteds = encrypt(value, secret);
-    console.log("poziom zabezpieczen", levelcheck);
+    // console.log("poziom zabezpieczen", levelcheck);
     if (encrypteds == pAduppatwo) {
       setsamepass(true);
     } else {
@@ -236,8 +236,8 @@ function ChangePass(RegisterText) {
       }
     }
 
-    console.log(encrypteds == pAduppatwo);
-    console.log(encrypteds, "- haslo 1", " ", pAduppatwo, "  - haslo two");
+    // console.log(encrypteds == pAduppatwo);
+    // console.log(encrypteds, "- haslo 1", " ", pAduppatwo, "  - haslo two");
   };
   // mail validacja
   const [levelcheckmail, setlevelcheckmail] = useState(4);
@@ -358,11 +358,11 @@ function ChangePass(RegisterText) {
     const messagefromUrl = params.get("message");
     if (levelcheck > 3) {
       if (pAduppatwo == pAduppaone) {
-        Axios.post("http://localhost:3002/ResetPass", {
+        Axios.post(`${process.env.REACT_APP_URL_API}/ResetPass`, {
           passchangetoken: messagefromUrl,
           Password: pAduppaone,
         }).then((res) => {
-          console.log("user created");
+          // console.log("user created");
           settextmessage(res?.data?.message.text);
           setcolormessage(res?.data?.message.color);
         });

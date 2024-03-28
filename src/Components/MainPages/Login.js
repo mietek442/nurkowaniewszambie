@@ -67,7 +67,7 @@ function Login({ loginText, choosePanelParametersSecond }) {
   }, [loginText]);
 
   const handleChangetwo = (selectedOption) => {
-    console.log(selectedOption.value);
+    //console.log(selectedOption.value);
   };
   const [levelcheckPassTwo, setlevelcheckPassTwo] = useState(4);
 
@@ -75,12 +75,12 @@ function Login({ loginText, choosePanelParametersSecond }) {
   var [loginPassword, setloginPassword] = useState("");
   const loginEmailref = useRef();
   const loginEmailchange = () => {
-    console.log(loginEmailref.current.value);
+    //console.log(loginEmailref.current.value);
     setloginMail(loginEmailref.current.value);
   };
   const loginPasswordRef = useRef();
   const loginPasswordchange = () => {
-    console.log(loginPasswordRef.current.value);
+    //console.log(loginPasswordRef.current.value);
     setloginPassword(loginPasswordRef.current.value);
   };
   const token = "Your JWT";
@@ -98,7 +98,9 @@ function Login({ loginText, choosePanelParametersSecond }) {
     };
 
     Axios.defaults.withCredentials = true;
-    Axios.post("http://localhost:3002/login", obj, { withCredentials: true })
+    Axios.post(`${process.env.REACT_APP_URL_API}/login`, obj, {
+      withCredentials: true,
+    })
       .then((res) => {
         // console.log(res);
 
@@ -109,9 +111,9 @@ function Login({ loginText, choosePanelParametersSecond }) {
         updateToken();
         setvaluesfromserver(res.data.response);
 
-        console.log(res.data.response);
+        //console.log(res.data.response);
         localStorage.setItem("token", res.data.response);
-        console.log(valuesfromserver);
+        //console.log(valuesfromserver);
         // console.log("nie wywalilo bazy danych");
         if (LgP) {
           // ustawiaj po poslku
@@ -257,7 +259,7 @@ function Login({ loginText, choosePanelParametersSecond }) {
       {messageLogin?.text}
     </InputLabel>
   );
-  console.log(messageLogin);
+  //console.log(messageLogin);
   var validateColor = [
     "rgb(69, 86, 157)",
     "rgb(255, 0, 0)",

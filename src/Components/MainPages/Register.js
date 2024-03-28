@@ -223,7 +223,7 @@ function Register(RegisterText) {
     }
     const secret = `doyo${ppppone}nothisisashit${zmp}6194684`;
     const encrypteds = encrypt(value, secret);
-    console.log("poziom zabezpieczen", levelcheck);
+
     if (levelcheck == 5) {
       if (encrypteds == pAduppatwo || pAduppatwo.length < 4) {
         setlevelcheck(5);
@@ -385,7 +385,6 @@ function Register(RegisterText) {
     var text = textFieldRefEPassTwo.current.value;
     const secret = `doyo${ppppone}nothisisashit${zmp}6194684`;
     const encrypted = encrypt(textFieldRefEPassTwo.current.value, secret);
-    console.log(encrypted);
     setpAduppatwo(encrypted);
     if (encrypted == pAduppaone && text.length > 3) {
       setlevelcheckPassTwo(5);
@@ -447,24 +446,18 @@ function Register(RegisterText) {
     setIsBooltwo(!isBooltwo);
   };
 
-  console.log(
-    "email: ",
-    eMails,
-    " name: ",
-    namess,
-    "  first pass: ",
-    pAduppaone,
-    "second pass: ",
-    pAduppatwo
-  );
   function senddataaxios() {
-    Axios.post("http://localhost:3002/register", {
+    Axios.post(`${process.env.REACT_APP_URL_API}/register`, {
       Email: eMails,
       UserName: namess,
       Password: pAduppaone,
-    }).then(() => {
-      console.log("user created");
-    });
+    })
+      .then(() => {
+        console.log("user created");
+      })
+      .catch(function (error) {
+        console.log("error with register");
+      });
   }
 
   return (

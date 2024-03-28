@@ -72,7 +72,9 @@ function Head({ setLanguege }) {
   var [headnavbar, setnavbar] = useState([]);
   Axios.defaults.withCredentials = true;
   useEffect(() => {
-    Axios.get("http://localhost:3002/returndata", { withCredentials: true })
+    Axios.get(`${process.env.REACT_APP_URL_API}/returndata`, {
+      withCredentials: true,
+    })
       .then((res) => {
         setreturnedData(res?.data?.personInfo);
       })
@@ -83,7 +85,7 @@ function Head({ setLanguege }) {
     if (returnedDataName?.length > 2) {
       var navhelp;
       navhelp = tabnavlg;
-      console.log(navhelp);
+
       navhelp.pop();
       if (lg === "English") {
         navhelp.push({ text: "User", page: "DashboardUser" });
@@ -95,7 +97,6 @@ function Head({ setLanguege }) {
       settabnavlgFinaly(tabnavlg);
     }
 
-    console.log(headnavbar);
     setnavbar(headnavbar);
   }, [returnedDataName, lg, tabnavlg]);
   var headnavbar = tabnavlgFinaly.map((e) => {
@@ -107,7 +108,7 @@ function Head({ setLanguege }) {
       </div>
     );
   });
-  console.log(returnedDataName);
+
   var checked = false;
   function BurgerHide() {
     var menu = document.querySelector(".head");
