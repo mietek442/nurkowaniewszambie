@@ -73,6 +73,7 @@ function Basket() {
         </div>
       );
     }
+    
   }, [Rabat]);
   var checkboxSx = {
     color: "gray",
