@@ -48,5 +48,8 @@
   "description": "This project use a Node js and React Js, project of Diving shop.",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "web-vitals": "^3.5.2"
+  }
 }
