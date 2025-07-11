@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
+import React, { useState, useEffect } from "react";
 import "./Products.css";
-import Axios from "axios"; // Import Axios
+import Axios from "axios";
 import { Button } from "@mui/material";
 import productdivin from "./../../Images/productdivin.png";
 
@@ -22,13 +22,13 @@ function Products() {
     fontWeight: "700",
     border: "1.5px solid rgba(0, 0, 0, 0.4)",
     "&&.MuiInputBase-root:after": {
-      borderBottom: "4px solid rgb(62, 86, 157)", // stylowanie tego dolnego obramowania
+      borderBottom: "4px solid rgb(62, 86, 157)",
       transition: "0.5s",
       color: "#02081d",
     },
   };
 
-  const [returnedData, setReturnedData] = useState([]); // Initialize as an array
+  const [returnedData, setReturnedData] = useState([]);
   const [returnDiv, setReturnDiv] = useState([]);
 
   useEffect(() => {
@@ -37,7 +37,8 @@ function Products() {
       withCredentials: true,
     })
       .then((res) => {
-        setReturnedData(res.data.value.list || []); // Ensure it's an array
+        console.log(res.data);
+        setReturnedData(res.data || []);
       })
       .catch((error) => {
         console.log("Error: ", error);
@@ -78,7 +79,7 @@ function Products() {
       ));
       setReturnDiv(renderedItems);
     }
-  }, [returnedData]); // Trigger rerender when returnedData changes
+  }, [returnedData]);
 
   return (
     <div>

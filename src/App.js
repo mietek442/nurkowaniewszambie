@@ -10,18 +10,23 @@ import Register from "./Components/MainPages/Register";
 import Products from "./Components/MainPages/Products";
 import DashboardUser from "./Components/MainPages/Dashbordrduser";
 import Passchange from "./Components/MainPages/PassChange";
-import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Dashboard } from "@mui/icons-material";
+import MainAdmin from "./Components/Admin/MainAdmin";
 
-function App() {
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+// ... inne importy
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   const [PanelParametersSecond, setPanelParametersSecond] = useState(null);
   const choosePanelParametersSecond = (PanelParametersSecond) => {
     setPanelParametersSecond({ PanelParametersSecond: PanelParametersSecond });
   };
-  console.log(PanelParametersSecond?.PanelParametersSecond);
-  var [actuallang, setactuallange] = useState("Polish");
-  var [FootText, setFootText] = useState({
+
+  const [actuallang, setactuallange] = useState("Polish");
+  const [FootText, setFootText] = useState({
     kontakt: "Kontakt",
     reg: "Regulamin",
     regskl: "Regulamin sklepu",
@@ -29,12 +34,12 @@ function App() {
     Social: "Nasze Sociale",
     question: "Najczęściej zadawane pytania",
   });
-  var [MainText, setMainText] = useState({
+  const [MainText, setMainText] = useState({
     descriptionH1: "Platforma dostarczająca sprzęt do nurkowania",
     descriptionH5:
       "Szybka wysyłka sprzętu 24/7, niskie ceny, oraz pełna obsługa",
   });
-  var [RegisterText, setRegisterText] = useState({
+  const [RegisterText, setRegisterText] = useState({
     name: "Imię i Nazwisko:",
     pass: "Hasło:",
     signIn: "ZALOGUJ SIĘ",
@@ -68,8 +73,7 @@ function App() {
         descriptionH5:
           "Szybka wysyłka sprzętu 24/7, niskie ceny, oraz pełna obsługa",
       });
-    }
-    if (actuallang === "English") {
+    } else if (actuallang === "English") {
       setFootText({
         kontakt: "Contact",
         reg: "Policity",
@@ -92,45 +96,49 @@ function App() {
       });
     }
   }, [actuallang]);
-  // const [acountInfo, setacountInfo] = useState(null);
-  // const AcountInfoFunction = (setter) => {
-  //   if (e) {
-  //     setacountInfo(e.value);
-  //   }
-  // };
 
+  return (
+    <>
+      {!isAdminRoute && <Head setLanguege={setLanguege} />}
+      <Routes>
+        <Route path="/admin/*" element={<MainAdmin />} />
+        <Route index element={<Main />} />
+        <Route path="/HomePages" element={<Main MainText={MainText} />} />
+        <Route path="/Products" element={<Products />} />
+        <Route
+          path="/Login"
+          element={
+            <Login
+              loginText={RegisterText}
+              choosePanelParametersSecond={choosePanelParametersSecond}
+            />
+          }
+        />
+        <Route
+          path="/Register"
+          element={<Register RegisterText={RegisterText} />}
+        />
+        <Route path="/Basket" element={<Basket />} />
+        <Route path="/DashboardUser" element={<DashboardUser />} />
+        <Route
+          path="/Passchange"
+          element={<Passchange RegisterText={RegisterText} />}
+        />
+        <Route path="*" element={<ErorPage />} />
+      </Routes>
+      {!isAdminRoute && <Footer FootText={FootText} />}
+    </>
+  );
+}
+
+function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Head setLanguege={setLanguege} />
-        <Routes>
-          <Route index element={<Main />} />
-          <Route path="/HomePages" element={<Main MainText={MainText} />} />
-          <Route path="/Products" element={<Products />} />
-          <Route
-            path="/Login"
-            element={
-              <Login
-                loginText={RegisterText}
-                choosePanelParametersSecond={choosePanelParametersSecond}
-              />
-            }
-          />
-          <Route
-            path="/Register"
-            element={<Register RegisterText={RegisterText} />}
-          />
-          <Route path="/Basket" element={<Basket />} />
-          <Route path="/DashboardUser" element={<DashboardUser />} />
-          <Route
-            path="/Passchange"
-            element={<Passchange RegisterText={RegisterText} />}
-          />
-          <Route path="*" element={<ErorPage />} />
-        </Routes>
+        <AppContent />
       </BrowserRouter>
-      <Footer FootText={FootText} />
     </div>
   );
 }
+
 export default App;
